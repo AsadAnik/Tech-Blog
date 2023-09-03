@@ -2,7 +2,6 @@ import { createServer } from 'http';
 import app from './app/app';
 import { connectDB } from './database/db';
 
-
 type CommonTypes = string | number;
 
 const HOST: CommonTypes = process.env.HOST || 'localhost';
@@ -23,7 +22,7 @@ const server = createServer(app);
 connectDB(DATABASE_URI)
   .then(() => {
     // Listening to Server..
-    server.listen(() => {
+    server.listen(PORT, () => {
       console.log(`Welcome to -- ${process.env.APP_NAME} -- `);
       console.log(`Server is running on http://${HOST}:${PORT}`);
     });

@@ -1,10 +1,12 @@
 import dotenv from 'dotenv';
 import * as path from 'path';
 import express from 'express';
-const app = express();
 import setupMiddlewares from './middleware';
 import globalErrorHandler from './error';
-import router from './routes';
+import routes from './routes';
+
+// Express App..
+const app = express();
 
 // DotEnv Configuration..
 dotenv.config();
@@ -15,7 +17,8 @@ const midddlewares = setupMiddlewares();
 // Using Middleware & Route..
 app.use(globalErrorHandler);
 app.use(midddlewares);
-app.use(router);
+app.use(routes);
+
 
 // For Production Environment..
 if (process.env.NODE_ENV === 'production') {
