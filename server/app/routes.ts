@@ -1,10 +1,12 @@
 import express, { Request, Response } from 'express';
 const router = express.Router();
 import authRoutes from '../routes/auth.routes';
+import userRoutes from '../routes/user.routes';
 
 
 // Includes Routes..
 router.use('/api/v1/auth', authRoutes);
+router.use('/api/v1/user', userRoutes);
 
 
 /**

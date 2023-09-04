@@ -11,8 +11,12 @@ const expiresIn: jwtKeyTypes = process.env.JWT_EXPIRES || '1h';
  * @param data 
  * @returns 
  */
-export const signToken = (data: any): string => {
-    return JWT.sign(data, secretKey, { expiresIn });
+export const signToken = (data: any): string | any => {
+    try {
+        return JWT.sign(data, secretKey, { expiresIn });
+    } catch (error) {
+        return error;
+    }
 };
 
 
@@ -25,6 +29,6 @@ export const verifyToken = (token: string): any | null => {
     try {
         return JWT.verify(token, secretKey);
     } catch (error) {
-        return null;
+        return error;
     }
 };

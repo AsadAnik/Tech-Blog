@@ -1,8 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
-import ErrorHandler from "../utils/errorHandler";
 import catchAsyncErrorHandle from "../middleware/catchAsyncErrors";
 import { ControllerFunction } from '../common/types';
-import { signToken, verifyToken } from '../utils/jwt';
 import AuthService from '../services/auth.service';
 
 
@@ -34,6 +32,7 @@ class AuthController {
         res.status(200).json({
             success: true,
             message: 'Successfully Logged-In',
+            user: isLoggedInUser,
         });
     });
 
@@ -64,17 +63,24 @@ class AuthController {
         });
 
         // Calling Service to Create User..
-        const newUser = await AuthService.createUser({ name, email, password, avatarPath });
+        let newUser = await AuthService.createUser({ name, email, password, avatarPath });
         if (!newUser) return res.status(400).json({
             success: false,
             message: 'Can\'t Register User!',
-        });;
-
-        res.status(201).json({ 
-            message: 'User Registered Successfully', 
-            user: newUser 
         });
-    }); 
+
+        // Save with Token..
+        const userWithToken = await AuthService.saveToken(newUser._id);
+        if (!userWithToken) return res.status(400).json({
+            success: false,
+            message: 'Failed to save the token',
+        });
+
+        res.status(201).json({
+            message: 'User Registered Successfully',
+            user: userWithToken
+        });
+    });
 
 
     /**

@@ -1,13 +1,15 @@
 import User from '../models/User';
 import cloudinary from '../config/cloudinaryConfig';
 import bcrypt from 'bcrypt';
+import { signToken } from '../utils/jwt';
+import ErrorHandler from '../utils/errorHandler';
 
 class AuthService {
     /**
      * ---- Login for user ----
      * @param param0 
      */
-    static async loginUser(nameOrEmail: string, password: string) {
+    static async loginUser(nameOrEmail: string, password: string): Promise<any> {
         const user = await this.findByNameOrEmail(nameOrEmail);
         if (!user) return false;
 
@@ -15,7 +17,10 @@ class AuthService {
         const isPasswordMatch = await bcrypt.compare(password, user.password);
         if (!isPasswordMatch) return false;
 
-        return user;
+        // Generate Token with User..
+        const userWithToken = await this.saveToken(user._id);
+
+        return userWithToken;
     }
 
     /**
@@ -23,7 +28,7 @@ class AuthService {
      * @param nameOrEmail 
      * @returns 
      */
-    static async findByNameOrEmail(nameOrEmail: string) {
+    static async findByNameOrEmail(nameOrEmail: string): Promise<any> {
         // Find out user with name or email..
         const user = await User.findOne({
             $or: [{ email: nameOrEmail }, { name: nameOrEmail }],
@@ -42,7 +47,7 @@ class AuthService {
         email: string;
         password: string;
         avatarPath?: string;
-    }) {
+    }): Promise<any> {
         // Upload the avatar to Cloudinary..
         let avatarResult;
 
@@ -73,7 +78,7 @@ class AuthService {
      * @param email 
      * @returns 
      */
-    static async checkEmailExists(email: string) {
+    static async checkEmailExists(email: string): Promise<any> {
         return await User.findOne({ email }) !== null;
     }
 
@@ -82,8 +87,29 @@ class AuthService {
      * @param name 
      * @returns 
      */
-    static async checkNameExists(name: string) {
+    static async checkNameExists(name: string): Promise<any> {
         return await User.findOne({ name }) !== null;
+    }
+
+    /**
+     * ----- Save User with Token ------
+     * @param token 
+     * @param userId 
+     * @returns 
+     */
+    static async saveToken(userId: string): Promise<any> {
+        try {
+            // Generate Token..
+            const token = signToken({ userId });
+
+            // Update the user document with the token..
+            const updatedUser = await User.findByIdAndUpdate(userId, { token }, { new: true });
+            return updatedUser;
+
+        } catch (error) {
+            // Handle Error here..
+            return new ErrorHandler("Error saving Token: ", 400);
+        }
     }
 }
 
