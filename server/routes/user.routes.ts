@@ -9,5 +9,10 @@ import authenticateToken from '../middleware/auth';
  */
 router.get('/check', authenticateToken, UserController.userCheck);
 
+/**
+ * ==== Logout Route ====
+ */
+router.get('/logout', authenticateToken, UserController.logout);
+
 
 export default router;
