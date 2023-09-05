@@ -6,8 +6,12 @@ const router = Router();
 /**
  * ==== Login Route ====
  */
-router.get('/login', AuthController.login);
+router.post('/login', AuthController.login);
 
+/**
+ * ==== Register Route ====
+ */
+router.post('/register', AuthController.register);
 
 /**
  * ==== Logout Route ====
