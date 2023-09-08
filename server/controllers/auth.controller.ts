@@ -81,26 +81,6 @@ class AuthController {
             user: userWithToken
         });
     });
-
-
-    /**
-     * ---- Logout Controller ----
-     */
-    static logout: ControllerFunction = catchAsyncErrorHandle(async (
-        _req: Request,
-        res: Response,
-        _next: NextFunction
-    ) => {
-        res.cookie('token', null, {
-            expires: new Date(Date.now()),
-            httpOnly: true,
-        });
-
-        res.status(200).json({
-            success: true,
-            message: 'Logged Out',
-        });
-    });
 }
 
 export default AuthController;

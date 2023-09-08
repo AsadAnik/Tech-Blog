@@ -7,6 +7,9 @@
     "start": "ts-node server.ts",
     "dev": "nodemon server.ts"
   },
+  "engines": {
+    "node": ">=16.20.1"
+  },
   "dependencies": {
     "bcrypt": "^5.1.1",
     "cloudinary": "^1.40.0",
