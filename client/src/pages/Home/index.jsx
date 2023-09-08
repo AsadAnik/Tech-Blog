@@ -61,7 +61,7 @@ import BlogList from "../../components/Home/BlogList";
 import Header from "../../components/Home/Header";
 import SearchBar from "../../components/Home/SearchBar";
 import { blogList } from "../../config/data";
-import './Home.css';
+
 
 const Home = () => {
   const [blogs, setBlogs] = useState(blogList);
