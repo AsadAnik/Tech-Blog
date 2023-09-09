@@ -2,9 +2,9 @@ openapi: 3.0.0
 
 info:
   version: 1.0.0
-  title: Testing OAS
+  title: Tech Blog
   description: >
-    I'm learning Open API Specificaiton. This is industry standard specification technique for any web service.
+    I'm learning the OpenAPI Specification (OAS). This is an industry-standard technique for documenting web services.
   termsOfService: https://example.com/terms
   contact:
     name: Asad Anik
@@ -12,23 +12,23 @@ info:
     email: engr.asadanik@gmail.com
   license:
     name: Apache 2.0
-    url: https://apache.com
+    url: https://www.apache.org/licenses/LICENSE-2.0
 
 servers:
-  - url: http://localhost:4000/api/v1
-    description: Dev. Server
-  - url: https://example.com/api/v1
-    description: Prod. Server
-    
+  - url: http://localhost:8000
+    description: Development Server
+  - url: https://blog-tech-api.onrender.com
+    description: Production Server
+
 paths:
   /health:
     get:
       tags:
-        - Health
-      description: this endpoint will test the health of the API
-      responses: 
-        '200':
-          description: It will return a success message
+        - API Health Checks
+      description: Endpoint to test the health of the API
+      responses:
+        "200":
+          description: Success response
           content:
             application/json:
               schema:
@@ -37,8 +37,8 @@ paths:
                   message:
                     type: string
                     example: Ok
-        '500':
-          description: The server is down
+        "500":
+          description: Server error response
           content:
             application/json:
               schema:
@@ -47,3 +47,157 @@ paths:
                   message:
                     type: string
                     example: Server is down
+
+  /api/v1/auth/login:
+    post:
+      tags:
+        - Authentication
+      description: Endpoint to authenticate a user and obtain a token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: user@example.com
+                password:
+                  type: string
+                  example: your_password
+      responses:
+        "200":
+          description: Successful login response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Successfully Logged-In
+                  user:
+                    $ref: "#/components/schemas/User"
+        "401":
+          description: Unauthorized response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Unauthorized
+
+  /api/v1/auth/register:
+    post:
+      tags:
+        - Authentication
+      description: Endpoint to register a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: John Doe
+                email:
+                  type: string
+                  example: user@example.com
+                password:
+                  type: string
+                  example: your_password
+                avatar:
+                  type: string
+                  example: asad.jpg
+      responses:
+        "201":
+          description: Successful registration response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Registration successful
+                  user:
+                    $ref: "#/components/schemas/User"
+        "400":
+          description: Bad request response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Bad request
+        "409":
+          description: Conflict response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: User already exists
+        "500":
+          description: Internal server error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Internal Server error
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        _id:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        avatar:
+          type: string  # You can specify the data type for the avatar (e.g., string for image URLs)
+        role:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        token:
+          type: string
