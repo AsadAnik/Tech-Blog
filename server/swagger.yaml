@@ -60,7 +60,7 @@ paths:
             schema:
               type: object
               properties:
-                email:
+                nameOrEmail:
                   type: string
                   example: user@example.com
                 password:
