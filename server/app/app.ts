@@ -5,7 +5,10 @@ import swaggerUI from 'swagger-ui-express';
 import setupMiddlewares from './middleware';
 import globalErrorHandler from './error';
 import routes from './routes';
-import swaggerSpec from '../config/swaggerConfig';
+import YAML from 'yamljs';
+
+// Load Swagger YAML file..
+const swaggerSpec = YAML.load('./swagger.yaml')
 
 // Express App..
 const app: Application = express();
@@ -15,6 +18,7 @@ dotenv.config();
 
 // Middlewares..
 const midddlewares = setupMiddlewares();
+
 // Using Swagger Middleware.
 app.use('/api-doc', swaggerUI.serve, swaggerUI.setup(swaggerSpec));
 

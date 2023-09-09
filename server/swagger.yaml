@@ -1,0 +1,49 @@
+openapi: 3.0.0
+
+info:
+  version: 1.0.0
+  title: Testing OAS
+  description: >
+    I'm learning Open API Specificaiton. This is industry standard specification technique for any web service.
+  termsOfService: https://example.com/terms
+  contact:
+    name: Asad Anik
+    url: https://asadanik.netlify.app
+    email: engr.asadanik@gmail.com
+  license:
+    name: Apache 2.0
+    url: https://apache.com
+
+servers:
+  - url: http://localhost:4000/api/v1
+    description: Dev. Server
+  - url: https://example.com/api/v1
+    description: Prod. Server
+    
+paths:
+  /health:
+    get:
+      tags:
+        - Health
+      description: this endpoint will test the health of the API
+      responses: 
+        '200':
+          description: It will return a success message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Ok
+        '500':
+          description: The server is down
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Server is down

@@ -10,6 +10,16 @@ router.use('/api/v1/user', authenticateToken, userRoutes);
 
 /**
  * ==== Health Checking API Endpoint ====
+ * @swagger
+ * /api/health:
+ * get:
+ *   summary: Get a list of users
+ *     description: Retrieve a list of users from the database.
+ *     responses:
+ *       200:
+ *         description: A list of users
+ *       500:
+ *         description: Internal server error
  */
 router.get('/health', (_req: Request, res: Response) => {
     res.status(200).json({
