@@ -8,7 +8,7 @@ const HOST: CommonTypes = process.env.HOST || 'localhost';
 const PORT: CommonTypes = process.env.PORT || 8080;
 const DATABASE_URI: CommonTypes = process.env.DATABASE_URI || 'mongodb://localhost:27017/tech-blog';
 
-// Handling Uncautht Exception..
+// Handling Uncaught Exception..
 process.on("uncaughtException", (error: Error) => {
   console.log(`Error: ${error.message}`);
   console.log('Shutting down the server due to Uncaught Exception');

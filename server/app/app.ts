@@ -1,20 +1,24 @@
 import dotenv from 'dotenv';
 import * as path from 'path';
-import express from 'express';
+import express, { Application } from 'express';
+import swaggerUI from 'swagger-ui-express';
 import setupMiddlewares from './middleware';
 import globalErrorHandler from './error';
 import routes from './routes';
+import swaggerSpec from '../config/swaggerConfig';
 
 // Express App..
-const app = express();
+const app: Application = express();
 
 // DotEnv Configuration..
 dotenv.config();
 
 // Middlewares..
 const midddlewares = setupMiddlewares();
+// Using Swagger Middleware.
+app.use('/api-doc', swaggerUI.serve, swaggerUI.setup(swaggerSpec));
 
-// Using Middleware & Route..
+// Using Middleware & Route.
 app.use(globalErrorHandler);
 app.use(midddlewares);
 app.use(routes);
