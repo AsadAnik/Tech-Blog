@@ -4,6 +4,7 @@
   "main": "server.ts",
   "license": "MIT",
   "scripts": {
+    "generate-swagger": "npx swagger-jsdoc -c ./config/swaggerConfig.yaml -o swagger.json",
     "start": "ts-node server.ts",
     "dev": "nodemon server.ts"
   },
@@ -21,10 +22,11 @@
     "mongoose": "^7.5.0",
     "multer": "^1.4.5-lts.1",
     "multer-storage-cloudinary": "^4.0.0",
-    "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.0",
     "ts-node": "^10.9.1",
-    "typescript": "^5.2.2"
+    "typescript": "^5.2.2",
+    "validator": "^13.11.0",
+    "yamljs": "^0.3.0"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
@@ -36,7 +38,9 @@
     "@types/morgan": "^1.9.5",
     "@types/multer": "^1.4.7",
     "@types/node": "^20.5.9",
+    "@types/swagger-ui-express": "^4.1.3",
     "@types/validator": "^13.11.1",
+    "@types/yamljs": "^0.2.31",
     "morgan": "^1.10.0",
     "nodemon": "^3.0.1"
   }
