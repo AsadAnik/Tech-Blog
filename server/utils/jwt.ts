@@ -5,11 +5,10 @@ type jwtKeyTypes = string;
 const secretKey: jwtKeyTypes = process.env.JWT_SECRET || 'MY-SECRET';
 const expiresIn: jwtKeyTypes = process.env.JWT_EXPIRES || '1h';
 
-
 /**
  * ---- Sign the Token ----
- * @param data 
- * @returns 
+ * @param data
+ * @returns
  */
 export const signToken = (data: any): string | any => {
     try {
@@ -19,11 +18,10 @@ export const signToken = (data: any): string | any => {
     }
 };
 
-
 /**
  * ----- Verify Token ----
- * @param token 
- * @returns 
+ * @param token
+ * @returns
  */
 export const verifyToken = (token: string): any | null => {
     try {

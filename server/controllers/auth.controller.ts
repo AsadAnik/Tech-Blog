@@ -50,14 +50,14 @@ class AuthController {
 
         // Check if the email is already registered..
         const isEmailExists = await AuthService.checkEmailExists(email);
-        if (isEmailExists) return res.status(400).json({
+        if (isEmailExists) return res.status(409).json({
             success: false,
             message: 'Email already registered. Please use a different email address',
         });
 
         // Check if a user with same name already exists..
         const isNameExists = await AuthService.checkNameExists(name);
-        if (isNameExists) return res.status(400).json({
+        if (isNameExists) return res.status(409).json({
             success: false,
             message: 'A user with the same name already exists. Please use a different name',
         });
@@ -77,28 +77,9 @@ class AuthController {
         });
 
         res.status(201).json({
+            success: true,
             message: 'User Registered Successfully',
             user: userWithToken
-        });
-    });
-
-
-    /**
-     * ---- Logout Controller ----
-     */
-    static logout: ControllerFunction = catchAsyncErrorHandle(async (
-        _req: Request,
-        res: Response,
-        _next: NextFunction
-    ) => {
-        res.cookie('token', null, {
-            expires: new Date(Date.now()),
-            httpOnly: true,
-        });
-
-        res.status(200).json({
-            success: true,
-            message: 'Logged Out',
         });
     });
 }

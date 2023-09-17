@@ -13,10 +13,5 @@ router.post('/login', AuthController.login);
  */
 router.post('/register', AuthController.register);
 
-/**
- * ==== Logout Route ====
- */
-router.get('/logout', AuthController.logout);
-
 
 export default router;
