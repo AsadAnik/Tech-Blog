@@ -1,4 +1,4 @@
-import mongoose, { Document, Model, Schema, model } from 'mongoose';
+import { Document, Model, Schema, model } from 'mongoose';
 import validator from 'validator';
 
 
