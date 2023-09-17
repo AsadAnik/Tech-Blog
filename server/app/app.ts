@@ -8,7 +8,7 @@ import routes from './routes';
 import YAML from 'yamljs';
 
 // Load Swagger YAML file..
-const swaggerSpec = YAML.load('./swagger.yaml')
+const swaggerSpec = YAML.load('./docs/swagger.yaml')
 
 // Express App..
 const app: Application = express();
