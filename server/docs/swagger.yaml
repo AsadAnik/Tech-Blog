@@ -51,56 +51,56 @@ paths:
 
   # ============= [ POST -> LOGIN USER ] ===============
   /api/v1/auth/login:
-    $ref: "authentication/login.yaml#/paths"
+    $ref: "authentication/login.yaml"
 
   # ============= [ POST -> REGISTER USER ] ===============
   /api/v1/auth/register:
-    $ref: "authentication/register.yaml#/paths"
+    $ref: "authentication/register.yaml"
 
   # ============= [ GET -> CHECK USER PROFILE ] ===============
   /api/v1/user/check:
-    $ref: "user/check.user.yaml#/paths"
+    $ref: "user/check.user.yaml"
 
   # ============= [ GET -> LOGOUT USER ] ===============
   /api/v1/user/logout:
-    $ref: "user/logout.user.yaml#/paths"
+    $ref: "user/logout.user.yaml"
 
   # ============= [ GET -> SEE ALL USERS ] ===============
   /api/v1/user/users:
-    $ref: "user/all.user.yaml#/paths"
+    $ref: "user/all.user.yaml"
 
   # ============= [ PUT -> CHANGE USER ROLE BY ADMIN ONLY ] ===============
   /api/v1/user/change-role/{userId}:
-    $ref: "user/change_role.user.yaml#/paths"
+    $ref: "user/change_role.user.yaml"
 
   # ============= [ PUT -> USER PROFILE UPDATE ] ===============
   /api/v1/user/update-profile:
-    $ref: "user/profile_update.user.yaml#/paths"
+    $ref: "user/profile_update.user.yaml"
 
   # ============= [ POST -> CHANGE USER PASSWORD ] ===============
   /api/v1/user/change-password:
-    $ref: "user/password_change.user.yaml#/paths"
+    $ref: "user/password_change.user.yaml"
 
   # ============= [ GET -> GET ALL BLOGS ] ===============
   # ============= [ POST -> BLOG CREATING ] ===============
   /api/v1/blogs:
-    $ref: "blog/read_write_blog.yaml#/paths"
+    $ref: "blog/read_write_blog.yaml"
 
   # ============= [ GET -> GET BLOG BY ID ] ===============
   # ============= [ PUT -> BLOG UPDATE ] ==================
   # ============= [ DELETE -> BLOG DELETE ] ===============
   /api/v1/blogs/{blogId}:
-    $ref: "blog/update_delete_read_blog.yaml#/paths"
+    $ref: "blog/update_delete_read_blog.yaml"
 
   # ============= [ GET -> ADMIN BLOGS ] ===============
   /api/v1/admin/blogs:
-    $ref: "admin/blogs.admin.yaml#/paths"
+    $ref: "admin/blogs.admin.yaml"
 
   # ============= [ GET -> GET ADMINS BLOGS ] ===============
   # ============= [ PUT -> UPDATE ADMIN BLOG ] ===============
   # ============= [ DELETE -> ADMIN BLOG DELETE ] ===============
   /api/v1/admin/blogs/{blogId}:
-    $ref: "admin/update.delete.blog.admin.yaml#/paths"
+    $ref: "admin/update.delete.blog.admin.yaml"
 
 # ============= [ ALL SCHEMAS REQUESTS ] ===============
 components:
