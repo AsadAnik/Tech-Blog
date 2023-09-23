@@ -1,8 +1,9 @@
 import express, { Request, Response } from 'express';
-import authenticateToken from "../middleware/auth";
+import { authenticateToken, isAdmin } from "../middleware/auth";
 import authRoutes from '../routes/auth.routes';
 import userRoutes from '../routes/user.routes';
 import blogRoutes from '../routes/blog.routes';
+import adminRoutes from '../routes/admin.route';
 
 const router = express.Router();
 
@@ -10,6 +11,8 @@ const router = express.Router();
 router.use('/api/v1/auth', authRoutes);
 router.use('/api/v1/user', authenticateToken, userRoutes);
 router.use('/api/v1/blogs', blogRoutes);
+router.use('/api/v1/admin', authenticateToken, isAdmin, adminRoutes);
+// router.use('/api/v1/category');
 
 /**
  * ==== Health Checking API Endpoint ====

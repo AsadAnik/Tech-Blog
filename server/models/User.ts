@@ -3,7 +3,7 @@ import validator from 'validator';
 
 
 // Define the User Document Interface.
-interface IUser extends Document {
+export interface IUser extends Document {
     name: string;
     email: string;
     password: string;

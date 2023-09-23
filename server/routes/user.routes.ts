@@ -2,6 +2,18 @@ import { Router } from 'express';
 import UserController from '../controllers/user.controller';
 const router = Router();
 
+
+/**
+ * ==== Get User ====
+ */
+router.get('/:id', UserController.getUser)
+    .put('/', UserController.updateProfile);
+
+/**
+ * ==== Get All Users ====
+ */
+router.get('/users', UserController.getUsers);
+
 /**
  * ==== Login Route ====
  */

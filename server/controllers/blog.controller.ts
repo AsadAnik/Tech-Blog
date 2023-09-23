@@ -77,11 +77,13 @@ class BlogController {
      * ---- See All Blogs ----
      */
     static allBlogs: ControllerFunction = catchAsyncErrorHandle(async (
-        _req: Request | any,
+        req: Request | any,
         res: Response,
         _next: NextFunction
     ) => {
-        const blogs = await BlogService.getBlogs();
+
+        const { search, category, page = 1, limit = 10 } = req.query;
+        const blogs = await BlogService.getBlogs(search, category, page, limit);
         if (!blogs) return res.status(401).json({
             success: false,
             message: 'No Blogs',

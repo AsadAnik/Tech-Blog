@@ -12,6 +12,8 @@ export interface IBlog extends Document {
     } | null;
     likes: LikeModel[];
     comments: CommentModel[];
+    approved: boolean;
+    status: string;
 }
 
 /**
@@ -37,7 +39,17 @@ const blogSchema = new Schema<IBlog>({
             type: Schema.Types.ObjectId,
             ref: 'Comment'
         }
-    ]
+    ],
+    approved: {
+        type: Boolean,
+        required: true,
+        default: false,
+    },
+    status: {
+        type: String,
+        required: true,
+        default: "pending"
+    }
 }, {
     timestamps: true
 });

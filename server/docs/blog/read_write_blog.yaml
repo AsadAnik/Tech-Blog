@@ -4,6 +4,29 @@ get:
     - Blog Manage
   summary: Get All Blog Posts
   description: Retrieve a list of all blog posts.
+  parameters:
+    - name: page
+      in: query
+      description: Page number of pagination
+      schema: 
+        type: integer
+      default: 1
+    - name: limit
+      in: query
+      description: Number of items per page
+      schema:
+        type: integer
+      default: 10
+    - name: category
+      in: query
+      description: Filter by category
+      schema:
+        type: string
+    - name: search
+      in: query
+      description: Search by title or content
+      schema:
+        type: string
   responses:
     "200":
       description: Successfully retrieved the list of blog posts.

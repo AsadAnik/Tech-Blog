@@ -35,8 +35,26 @@ class BlogService {
     /**
      * ----- Get All Blogs ----
      */
-    static async getBlogs (): Promise<any> {
-        const blogs = await Blog.find().sort({createdAt: -1});
+    static async getBlogs (
+        search: string,
+        category: string,
+        page: number,
+        limit: number
+    ): Promise<any> {
+        const skip = (page - 1) * limit;
+        
+        const query: any = search ? {
+            $or: [
+                { title: { $regex: new RegExp(search, 'i') } },
+                { content: { $regex: new RegExp(search, 'i') } }
+            ]
+        } : {};
+
+        if (category) {
+            query.category = category;
+        }
+
+        const blogs = await Blog.find(query).sort({createdAt: -1}).skip(skip).limit(limit);
         if (!blogs.length) return false;
         return blogs;
     }

@@ -69,9 +69,9 @@ paths:
   /api/v1/user/users:
     $ref: "user/all.user.yaml"
 
-  # ============= [ PUT -> CHANGE USER ROLE BY ADMIN ONLY ] ===============
-  /api/v1/user/change-role/{userId}:
-    $ref: "user/change_role.user.yaml"
+  # ============= [ GET -> SEE ALL USERS ] ===============
+  /api/v1/user/{id}:
+    $ref: "user/user_by_id.user.yaml"
 
   # ============= [ PUT -> USER PROFILE UPDATE ] ===============
   /api/v1/user/update-profile:
@@ -80,6 +80,10 @@ paths:
   # ============= [ POST -> CHANGE USER PASSWORD ] ===============
   /api/v1/user/change-password:
     $ref: "user/password_change.user.yaml"
+  
+  # ============= [ DELETE -> DELETE USER ] ===============
+  /api/v1/user:
+    $ref: "user/delete_user.user.yaml"
 
   # ============= [ GET -> GET ALL BLOGS ] ===============
   # ============= [ POST -> BLOG CREATING ] ===============

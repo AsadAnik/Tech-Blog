@@ -7,14 +7,26 @@
     "start": "ts-node server.ts",
     "dev": "nodemon server.ts",
     "generate-doc": "swagger-cli bundle docs/swagger.yaml --outfile docs/_build/swagger.yaml --type yaml",
-    "dev:doc": " yarn generate-doc && yarn dev"
+    "dev:doc": " yarn generate-doc && yarn dev",
+    "start:doc": "yarn generate-doc && ts-node server.ts",
+    "make:model": "ts-node cli/index.ts generate:model",
+    "make:service": "ts-node cli/index.ts generate:service",
+    "make:controller": "ts-node cli/index.ts generate:controller",
+    "make:route": "ts-node cli/index.ts generate:route",
+    "make:all": "ts-node cli/index.ts generate:all",
+    "make:all:schema": "ts-node cli/index.ts generate:all schema"
   },
   "engines": {
     "node": ">=16.20.1"
   },
+  "bin": {
+    "myCli": "./cli/index.ts"
+  },
   "dependencies": {
+    "@types/commander": "^2.12.2",
     "bcrypt": "^5.1.1",
     "cloudinary": "^1.40.0",
+    "commander": "^11.0.0",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
