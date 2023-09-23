@@ -15,7 +15,7 @@ class UserController {
     ) => {
         const { userId } = req.user;
         const user = await UserService.userCheck(userId);
-        if (!user) return res.status(200).json({
+        if (!user) return res.status(400).json({
             success: false,
             message: 'No User for Checks',
         });
