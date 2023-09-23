@@ -1,14 +1,43 @@
-import React, { useState, useRef } from "react";
-import { Link } from "react-router-dom";
-import "./Register.css";
+import React, { useState, useRef, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import styles from "./Register.module.css";
+// import { registerRequest } from "../../API";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useDispatch, useSelector } from "react-redux";
+import { registerAction } from "../../redux/actions/authAction";
 
 const Register = () => {
+
+  
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
-    username: "",
+    name: "",
     email: "",
     password: "",
     confirmPassword: "",
   });
+
+  const { loading, success, message } = useSelector((state) => state?.userRegister);
+
+  useEffect(() => {
+    if (!success) {
+      toast.error(message, {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 5000,
+      });
+    }
+
+    if (success) {
+      toast.success(message, {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 3000,
+      });
+      navigate("/")
+    }
+  }, [success, navigate]);
 
   // const [profilePicture, setProfilePicture] = useState(null);
   // const [profilePictureButton, setProfilePictureButton] = useState("");
@@ -25,7 +54,6 @@ const Register = () => {
   const [profilePictureButton, setProfilePictureButton] = useState("");
   const [passwordMatchError, setPasswordMatchError] = useState(null);
 
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -40,7 +68,7 @@ const Register = () => {
       }
     }
 
-    if (name === "username") {
+    if (name === "name") {
       if (value.length < 3) {
         setUsernameError("Username should be at least 3 characters.");
       } else if (value.length > 30) {
@@ -56,10 +84,10 @@ const Register = () => {
         setEmailError("");
       }
     }
-    if (name === 'confirmPassword' && value !== formData.password) {
-      setPasswordMatchError('Password not matched');
+    if (name === "confirmPassword" && value !== formData.password) {
+      setPasswordMatchError("Password not matched");
     } else {
-      setPasswordMatchError('');
+      setPasswordMatchError("");
     }
   };
 
@@ -78,48 +106,55 @@ const Register = () => {
     }
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
+    // start loading..
+
     // Handle registration logic here
+    // registerRequest({
+    //   name: formData.name,
+    //   email: formData.email,
+    //   password: formData.password,
+    // });
 
-    if (!emailError) {
-      try {
-        const response = await fetch("/api/check-email", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email: formData.email }),
-        });
+    dispatch(
+      registerAction({
+        name: formData.name,
+        email: formData.email,
+        password: formData.password,
+      })
+    );
+    // .then((res) => {
+    //   if (res.success) {
+    //     setCookie("authToken", res?.user?.token, 1);
+    //     navigate("/");
+    //     setLoading(false);
+    //   }
+    //   if (!res.success) {
+    //     toast.error(res.message, {
+    //       position: toast.POSITION.TOP_RIGHT,
+    //       autoClose: 5000,
+    //     });
+    //     setLoading(false);
+    //   }
 
-        if (response.ok) {
-          const data = await response.json();
-          if (data.exists) {
-            setEmailExistsError("This email is already in use.");
-          } else {
-            // Handle registration logic here
-            console.log("Form data submitted:", formData);
-          }
-        } else {
-          // Handle other response errors
-        }
-      } catch (error) {
-        console.error("Error:", error);
-        // Handle network errors
-      }
-    }
-    console.log("Form data submitted:", formData);
+    //   // Navigate('/login')
+    // })
+    // .catch((e) => {
+    //   toast.error(res.message, {
+    //     position: toast.POSITION.TOP_RIGHT,
+    //     autoClose: 5000,
+    //   });
+    // });
   };
 
-  const newLocal = "../../";
   return (
-    <div className="register-container">
-      <div className="container">
-        <div className="register-image">
-         
-        </div>
-        <div className="register-form">
-          <h2>Register</h2>
+    <div className={styles.registerContainer}>
+      <ToastContainer />
+      <div className={styles.containerRegister}>
+        <div className={styles.registerImage}></div>
+        <div className={styles.registerForm}>
+          <h2 className={styles.registerForm.h2}>Register</h2>
           <div>
             <input
               type="file"
@@ -132,37 +167,39 @@ const Register = () => {
             />
             <label
               htmlFor="profilePicture"
-              className="profile-picture"
+              className={styles.profilePicturePreview}
               onClick={handleProfilePictureChange}
             >
               <>
-                <span>Click to Upload Profile Picture</span>
+                <span className={styles.formLink.span}>
+                  Click to Upload Profile Picture
+                </span>
                 <i className="fas fa-camera"></i>
               </>
             </label>
           </div>
-          <div className="profile-picture-preview">
+          <div className={styles.profilePicturePreview}>
             {profilePicture && <img src={profilePicture} alt="Profile" />}
           </div>
-          <div className="profile-picture-upload">{profilePictureButton}</div>
+          {/* <div className={styles.profilePicturePreview}>{profilePictureButton}</div> */}
 
           <form onSubmit={handleSubmit}>
-            <div className="form-group">
-              <label htmlFor="username">Username</label>
+            <div className={styles.formGroupRegister}>
+              <label htmlFor="name">Username</label>
               <input
                 type="text"
-                placeholder="Enter your username"
-                id="username"
-                name="username"
-                value={formData.username}
+                placeholder="Enter your name"
+                id="name"
+                name="name"
+                value={formData.name}
                 onChange={handleChange}
                 required
               />
               {usernameError && (
-                <span className="error-message">{usernameError}</span>
+                <span className={styles.Error}>{usernameError}</span>
               )}
             </div>
-            <div className="form-group">
+            <div className={styles.formGroupRegister}>
               <label htmlFor="email">Email</label>
               <input
                 type="email"
@@ -173,14 +210,12 @@ const Register = () => {
                 onChange={handleChange}
                 required
               />
-              {emailError && (
-                <span className="error-message">{emailError}</span>
-              )}
+              {emailError && <span className={styles.Error}>{emailError}</span>}
               {emailExistsError && (
-                <span className="error-message">{emailExistsError}</span>
+                <span className={styles.Error}>{emailExistsError}</span>
               )}
             </div>
-            <div className="form-group">
+            <div className={styles.formGroupRegister}>
               <label htmlFor="password">Password</label>
               <input
                 type="password"
@@ -192,10 +227,10 @@ const Register = () => {
                 required
               />
               {passwordError && (
-                <span className="error-message">{passwordError}</span>
+                <span className={styles.Error}>{passwordError}</span>
               )}
             </div>
-            <div className="form-group">
+            <div className={styles.formGroupRegister}>
               <label htmlFor="confirmPassword">Confirm Password</label>
               <input
                 type="password"
@@ -207,15 +242,21 @@ const Register = () => {
                 required
               />
               {passwordMatchError && (
-                <span className="error-message">{passwordMatchError}</span>
+                <span className={styles.Error}>{passwordMatchError}</span>
               )}
             </div>
-            <button type="submit">Join</button>
+            <button
+              className={styles.buttonRegister}
+              type="submit"
+              disabled={loading}
+            >
+              {!loading ? "Join" : "Please Wait..."}
+            </button>
 
-            <div className="form-link">
+            <div className={styles.formLink}>
               <span>
-                Already have an account?{" "}
-                <Link to="/login" className="link login-link">
+                Already have an account?
+                <Link to="/login" className={styles.formLink.a}>
                   Login
                 </Link>
               </span>

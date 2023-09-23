@@ -1,0 +1,127 @@
+/* Login.module.css */
+
+.loginContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: #f5f5f5;
+    width: 100%;
+  }
+  
+  .containerLogin {
+    width: 65vw;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .loginImage {
+    flex: 1;
+    padding: 20px;
+    text-align: center;
+    background-color: #007bff;
+    color: #fff;
+    /* ... Your other styles ... */
+  }
+  
+  .loginImage {
+    flex-basis: 30%;
+    background-image: url("../src/assets/images/online.jpg");
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px 0 0 8px;
+  }
+  
+  .loginImage img {
+    max-width: 70%;
+    height: auto;
+    object-fit: cover;
+  }
+  
+  .loginForm {
+    flex: 1;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 0 8px 8px 0;
+    min-width: 350px;
+  }
+  
+  .loginForm h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid;
+    border-bottom-color: tomato;
+  }
+  
+  .formGroupLogin {
+    margin-bottom: 20px;
+  }
+  
+  .formGroupLogin label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 8px;
+    text-align: justify;
+  }
+  
+  .formGroupLogin input {
+    width: 95%;
+    padding: 7px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  .formLink {
+    text-align: initial;
+    margin-top: 10px;
+    margin-left: 20px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #232836;
+  }
+  
+  .formLink span,
+  .formLink a {
+    font-size: 14px;
+    font-weight: 400;
+    margin-left: 0px!important;
+    color: #232836;
+  }
+  
+  .loginBtn {
+    padding: 7px 95px !important;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    background-color: rgb(199 20 20 / 80%) !important;
+    color: white !important;
+    width: 100%;
+  }
+  
+  .loginBtn:hover {
+    background-color: #000;
+    color: #fff;
+  }
+  
+  .registerError {
+    border-bottom: 1px red;
+    color: red;
+  }
+/* styles.module.css */
+
+/* Your existing CSS styles for larger screens */
+/* styles.module.css */
+
+/* Your existing CSS styles for larger screens */
+
+/* Media query for mobile devices */
+
+
+  
+
+  /* ... Your other styles ... */
+  

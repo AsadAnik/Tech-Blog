@@ -2,8 +2,8 @@
 .home-header {
   text-align: center;
   padding: 20px;
-  background-color: #0080ff; /* Background color for the navbar */
-  color: #fff; /* Text color for the navbar */
+  background-color: #0080ff;
+  color: #fff;
 }
 
 .top-navbar ul {
@@ -27,8 +27,8 @@
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  display: inline-block; /* Centered category box */
-  margin-top: 20px; /* Space between "Blog" text and category box */
+  display: inline-block;
+  margin-top: 20px;
 }
 
 .category-box h3 {
@@ -49,4 +49,92 @@
 .category-box a {
   text-decoration: none;
   color: #333;
+}
+
+.top-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.user-dropdown {
+  margin-left: auto;
+  border: 1px solid tomato;
+}
+
+/* Dropdown container */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown button */
+.dropbtn {
+  background-color: transparent;
+  color: #333;
+  border: none;
+  cursor: pointer;
+}
+
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 140px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  color: #333;
+}
+
+/* Change color of links on hover */
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Style for the logout button */
+.dropdown-content button {
+  padding: 12px 16px;
+  background-color: #d9534f; /* Red background color */
+  color: white;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+}
+
+/* Style for the logout button on hover */
+.dropdown-content button:hover {
+  background-color: #c9302c; /* Darker red on hover */
+}
+
+/* Default styles for larger screens */
+.header {
+  font-size: 24px;
+}
+
+/* Media query for mobile devices */
+@media (max-width: 768px) {
+  .header {
+    font-size: 18px;
+  }
+  .top-navbar{
+    flex-direction: column;
+    text-align: center;
+  }
+  .left-links{
+    margin: 10px 0;
+  }
 }
