@@ -1,29 +1,3 @@
-// import React from "react";
-// import "./styles.css";
-
-// const Header = () => (
-//   <header className="home-header">
-//     <nav>
-//       <div>
-//         <ul>
-//           <li><a href="#">Home</a></li>
-//           <li><a href="#">About</a></li>
-//           <li><a href="#">Help</a></li>
-//         </ul>
-//       </div>
-//     </nav>
-//     <h1>
-//       <span>“</span> Blog <span>”</span>
-//     </h1>
-//     <p>
-//       awesome place to make oneself <br /> productive and entertained through
-//       daily updates.
-//     </p>
-//   </header>
-// );
-
-// export default Header;
-
 import React from "react";
 import "./styles.css";
 
