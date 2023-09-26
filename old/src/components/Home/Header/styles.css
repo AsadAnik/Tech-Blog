@@ -1,0 +1,52 @@
+/* Header Styles */
+.home-header {
+  text-align: center;
+  padding: 20px;
+  background-color: #0080ff; /* Background color for the navbar */
+  color: #fff; /* Text color for the navbar */
+}
+
+.top-navbar ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.top-navbar li {
+  margin-right: 20px;
+}
+
+.top-navbar a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.category-box {
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  display: inline-block; /* Centered category box */
+  margin-top: 20px; /* Space between "Blog" text and category box */
+}
+
+.category-box h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.category-box ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+}
+
+.category-box li {
+  margin-bottom: 10px;
+}
+
+.category-box a {
+  text-decoration: none;
+  color: #333;
+}
