@@ -1,0 +1,18 @@
+// import '@/styles/widgets/search.scss';
+
+// const SearchBar = ({ formSubmit, value, handleSearchKey, clearSearch }) => (
+//   <div className='searchBar-wrap'>
+//     <form onSubmit={formSubmit}>
+//       <input
+//         type='text'
+//         placeholder='Search By Title'
+//         value={value}
+//         onChange={handleSearchKey}
+//       />
+//       {value && <span onClick={clearSearch}>X</span>}
+//     </form>
+//   </div>
+// );
+
+// export default SearchBar;
+q
