@@ -1,9 +1,15 @@
-"use client"
+
+
+
+"use client";
 import React from "react";
 import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button, NavbarMenuToggle, NavbarMenu, NavbarMenuItem } from "@nextui-org/react";
+import { useRouter } from 'next/navigation'
+; // Import useRouter from Next.js
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const router = useRouter(); // Initialize the router
 
   const menuItems = [
     "Profile",
@@ -17,6 +23,10 @@ export default function Navigation() {
     "Help & Feedback",
     "Log Out",
   ];
+
+  // Define route URLs for login and signup
+  const loginRoute = "/login";
+  const signupRoute = "/signup";
 
   return (
     <Navbar onMenuOpenChange={setIsMenuOpen}>
@@ -50,11 +60,13 @@ export default function Navigation() {
       </NavbarContent>
       <NavbarContent justify="end">
         <NavbarItem className="hidden lg:flex">
-          <Link href="#">Login</Link>
+          {/* Use the router to navigate to the login page */}
+          <Link href={loginRoute}>Login</Link>
         </NavbarItem>
         <NavbarItem>
-          <Button as={Link} color="primary" href="#" variant="flat">
-            Sign Up
+          {/* Use the router to navigate to the signup page */}
+          <Button color="primary" variant="flat">
+          <Link href={signupRoute}>SignUp</Link>
           </Button>
         </NavbarItem>
       </NavbarContent>
