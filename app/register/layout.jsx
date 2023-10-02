@@ -1,4 +1,4 @@
-export default function loginLayout({ children }) {
+export default function registerLayout({ children }) {
     return (
         <section>
             {children}
