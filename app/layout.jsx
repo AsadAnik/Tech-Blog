@@ -17,9 +17,10 @@ export default function RootLayout({ children }) {
       <body className={`${inter.className} light`}>
         {/* <h3>Header</h3> */}
         <Providers>
-          <Navigation />
+          {/* <Navigation />
           {children}
-          <Footer />
+          <Footer /> */}
+          {children}
         </Providers>
       </body>
     </html>

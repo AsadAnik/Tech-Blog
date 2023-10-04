@@ -26,7 +26,7 @@ export default function Navigation() {
 
   // Define route URLs for login and signup
   const loginRoute = "/login";
-  const signupRoute = "/signup";
+  const signupRoute = "/register";
 
   return (
     <Navbar onMenuOpenChange={setIsMenuOpen}>
